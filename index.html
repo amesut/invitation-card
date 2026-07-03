@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Davetiye</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+    
+  <section class="page section-hero-image">
+        <!-- Fotoğrafı CSS üzerinden çekeceğiz, buraya sadece logonuzu veya şık bir metin ekleyebilirsin -->
+        <div class="hero-overlay">
+            <div class="countdown-container">
+                <div class="countdown-box">
+                    <span id="days">00</span>
+                    <label>Gün</label>
+                </div>
+                <div class="countdown-box">
+                    <span id="hours">00</span>
+                    <label>Saat</label>
+                </div>
+                <div class="countdown-box">
+                    <span id="minutes">00</span>
+                    <label>Dakika</label>
+                </div>
+                <div class="countdown-box">
+                    <span id="seconds">00</span>
+                    <label>Saniye</label>
+                </div>
+            </div>
+            <p class="hero-sub">DÜĞÜNÜMÜZE DAVETLİSİNİZ</p>
+            <h1 class="hero-title">Sinan & Gamze</h1>
+        </div>
+        <div class="scroll-down-container" id="scrollDetailsBtn">
+        <div class="scroll-circle">
+            <span class="arrow-down"></span>
+        </div>
+    </div>
+    </section>
+
+
+    <section class="page section-details" id="detailsPage">
+    <div class="invitation-fit-wrapper">
+        
+        <img src="assets/images/davetiye-tam.webp" alt="Gamze & Sinan Davetiye" class="invitation-main-img">
+        
+        <a href="https://maps.app.goo.gl/gWUyXHVZo1ZVakv39" target="_blank" class="" style="color: black !important;">Konuma Git📍</a>
+        
+    </div>
+
+    <div class="scroll-down-container" id="scrollGalleryBtn">
+        <div class="scroll-circle">
+            <span class="arrow-down"></span>
+        </div>
+    </div>
+</section>
+
+
+    <section class="page section-gallery" id="galleryPage">
+        <div class="content-box">
+            <h2>Bizim Anlarımız</h2>
+            <div class="photo-grid">
+                <img src="assets/images/foto1.jpeg" alt="Biz 1" class="gallery-img">
+                <img src="assets/images/foto3.jpeg" alt="Biz 2" class="gallery-img">
+                <img src="assets/images/foto4.jpeg" alt="Biz 4" class="gallery-img">
+                <img src="assets/images/foto2.jpeg" alt="Biz 3" class="gallery-img">
+            </div>
+            
+           <div class="upload-container">
+            <p class="upload-text">Düğünümüz boyunca çektiğiniz o güzel fotoğrafları bizimle paylaşmak ister misiniz?</p>
+            <a href="https://drive.google.com/drive/folders/1Y7YCFXXB16-gUaVyZ2ycJvqmbQC-HhrQ?usp=drive_link" target="_blank" class="btn-upload">
+                Fotoğrafları Yükle 📸
+            </a>
+        </div>
+        </div>
+    <div class="scroll-down-container" id="scrollParticipationBtn">
+    <div class="scroll-circle">
+        <span class="arrow-down"></span>
+    </div>
+</div>
+    </section>
+
+    <section class="page section-rsvp" id="participationPage">
+        <div class="content-box">
+            <h2>Katılım Bildirimi</h2>
+            <br/>
+         <form id="rsvpForm">
+    <div class="form-group">
+        <label>Ad Soyad</label>
+        <input type="text" id="fullName" class="form-control" required placeholder="Adınız Soyadınız"maxlength="50">
+    </div>
+    
+    <div class="form-group">
+        <label>Gelecek misiniz?</label>
+        <select id="participationStatus" class="form-control" required>
+            <option value="Geliyorum" style="color: black;">Evet, Geliyorum 🥳</option>
+            <option value="Gelemiyorum" style="color: black;">Maalesef Gelemiyorum 😔</option>
+        </select>
+    </div>
+    
+    <div class="form-group" id="numberOfParticipants">
+        <label>Kaç kişi geliyorsunuz?</label>
+        <input type="number" id="numberOfParticipantsCount" class="form-control" value="1" min="1" max="99" oninput="if(this.value.startsWith('0')) this.value = this.value.replace(/^0+/, ''); if(this.value.length > 2) this.value = this.value.slice(0, 2);">
+    </div>
+    <button type="submit" class="btn-submit" id="submitBtn">Gönder</button>
+</form>
+        </div>
+    </section>
+
+</div>
+<script>
+        // Butonu ve hedef sayfayı DOM'dan seçiyoruz
+        const scrollDetailsBtn = document.getElementById('scrollDetailsBtn');
+        const scrollGalleryBtn = document.getElementById('scrollGalleryBtn');
+        const scrollParticipationBtn = document.getElementById('scrollParticipationBtn');
+        const detailsPage = document.getElementById('detailsPage');
+        const galleryPage = document.getElementById('galleryPage'); 
+        const participationPage = document.getElementById('participationPage'); 
+
+        const rsvpForm = document.getElementById('rsvpForm');
+        const submitBtn = document.getElementById('submitBtn');
+
+        // Yeni eklediğimiz gizleme/gösterme elemanları
+        const inputParticipation = document.getElementById('participationStatus');
+        const numberOfParticipants = document.getElementById('numberOfParticipants');
+        const inputnumberOfParticipantsCount = document.getElementById('numberOfParticipantsCount');
+         
+        // Butona tıklanınca çalışacak fonksiyon
+        scrollDetailsBtn.addEventListener('click', () => {
+            // scrollIntoView fonksiyonu sayfayı pürüzsüzce (smooth) aşağı kaydırır
+            detailsPage.scrollIntoView({ behavior: 'smooth' });
+        });
+
+        scrollGalleryBtn.addEventListener('click', () => {
+            // scrollIntoView fonksiyonu sayfayı pürüzsüzce (smooth) aşağı kaydırır
+            galleryPage.scrollIntoView({ behavior: 'smooth' });
+        });
+
+        scrollParticipationBtn.addEventListener('click', () => {
+            // scrollIntoView fonksiyonu sayfayı pürüzsüzce (smooth) aşağı kaydırır
+            participationPage.scrollIntoView({ behavior: 'smooth' });
+        });
+
+        // ==========================================================================
+        // 3. DİNAMİK GİZLEME / GÖSTERME MOTORU
+        // ==========================================================================
+        if (inputParticipation && numberOfParticipants) {
+            inputParticipation.addEventListener('change', function() {
+                if (this.value === 'Gelemiyorum') {
+                    // Gelemiyorum seçildiyse alanı gizle
+                    numberOfParticipants.style.display = 'none';
+                    // Excel'e 0 kişi olarak gitsin diye değeri 0 yapıyoruz
+                    if(inputnumberOfParticipantsCount) inputnumberOfParticipantsCount.value = "0"; 
+                } else {
+                    // Geliyorum seçildiyse alanı tekrar göster
+                    numberOfParticipants.style.display = 'block';
+                    if(inputnumberOfParticipantsCount) inputnumberOfParticipantsCount.value = "1"; // Varsayılan 1 yap
+                }
+            });
+        }
+
+        // ==========================================================================
+    // 4. CANLI DÜĞÜN GERİ SAYIM MOTORU (22 AĞUSTOS 2026)
+    // ==========================================================================
+    // JavaScript'te aylar 0'dan başlar: Ocak=0, Şubat=1 ... Ağustos=7
+    const targetWeddingDate = new Date(2026, 7, 22, 19, 0, 0).getTime();
+
+    const runCountdown = setInterval(function() {
+        const currentTime = new Date().getTime();
+        const timeLeft = targetWeddingDate - currentTime;
+
+        // Zaman hesaplama algoritmaları
+        const d = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+        const h = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const m = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+        const s = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+        const daysDisplay = document.getElementById("days");
+        const hoursDisplay = document.getElementById("hours");
+        const minutesDisplay = document.getElementById("minutes");
+        const secondsDisplay = document.getElementById("seconds");
+
+        if (daysDisplay && hoursDisplay && minutesDisplay && secondsDisplay) {
+            daysDisplay.innerText = d < 10 ? "0" + d : d;
+            hoursDisplay.innerText = h < 10 ? "0" + h : h;
+            minutesDisplay.innerText = m < 10 ? "0" + m : m;
+            secondsDisplay.innerText = s < 10 ? "0" + s : s;
+        }
+
+        // Düğün günü geldiğinde
+        if (timeLeft < 0) {
+            clearInterval(runCountdown);
+            const tickerContainer = document.querySelector(".countdown-container");
+            if (tickerContainer) {
+                tickerContainer.innerHTML = "<b style='color:#fff; font-size:1.3rem;'>O Büyük Gün Geldi! 🥳❤️</b>";
+            }
+        }
+    }, 1000);
+
+    // ==========================================================================
+    // 5. HATASIZ FORM GÖNDERME MOTORU (MANUEL KONTROLLÜ)
+    // ==========================================================================
+    if (submitBtn && rsvpForm) {
+        submitBtn.addEventListener('click', function(e) {
+            e.preventDefault(); 
+            
+            const inputFullName = document.getElementById('fullName');
+
+            const fullName = inputFullName ? inputFullName.value.trim() : "";
+            const numberOfParticipantsVal = inputnumberOfParticipantsCount ? inputnumberOfParticipantsCount.value : "1";
+            const participantStatusVal = inputParticipation ? inputParticipation.value : "Geliyorum";
+
+            if (fullName === "") {
+                alert("Lütfen adınızı ve soyadınızı yazın! ❤️");
+                if(inputFullName) inputFullName.focus();
+                return;
+            }
+
+            submitBtn.innerText = "Gönderiliyor... ⏳";
+            submitBtn.disabled = true;
+
+            const formData = {
+                fullName: fullName,
+                numberOfParticipants: numberOfParticipantsVal,
+                participantStatus: participantStatusVal
+            };
+
+            // Buraya kendi Google Apps Script Web Uygulaması URL'sini yapıştır kanka
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbwZGZDJgs6tsJ-JswLNoMryKlAAPxnlwqgcv3FTIY-ex2oI5Et_8z6V_D210D3laHN9/exec';
+
+            fetch(scriptURL, {
+                method: 'POST',
+                mode: 'no-cors', 
+                cache: 'no-cache',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData)
+            })
+            .then(() => {
+                alert('Katılım bildiriminiz başarıyla iletildi. Teşekkür ederiz! ❤️');
+                if (typeof rsvpForm.reset === 'function') {
+                    rsvpForm.reset();
+                    // Form sıfırlanınca gizlenen alanın geri gelmesini sağla
+                    numberOfParticipants.style.display = 'block';
+                } else if (inputFullName) {
+                    inputFullName.value = "";
+                }
+                
+                submitBtn.innerText = "Bildir";
+                submitBtn.disabled = false;
+            })
+            .catch(error => {
+                console.error('Gönderim Hatası:', error);
+                alert('Bir bağlantı hatası oluştu, lütfen tekrar deneyin kanka.');
+                submitBtn.innerText = "Formu Gönder";
+                submitBtn.disabled = false;
+            });
+        });
+    }
+    </script>
+</body>
+</html>
